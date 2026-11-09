@@ -1,0 +1,85 @@
+SELECT CONCAT(Emp_FName, ' ', Emp_LName) AS 'Full Name', 
+CONCAT('$ ', Emp_HourlySalary) AS 'Hourly Salary'
+FROM EMPLOYEE
+ORDER BY Emp_HourlySalary ASC;
+
+
+
+SELECT CONCAT (customer.Cust_FName,' ',customer.Cust_LName) AS customer_name, DATE_FORMAT(CustOrd_Date,'%d/%m/%Y') AS Customer_Order_Date
+FROM customerorder 
+JOIN customer ON customerorder.Cust_Number = customer.Cust_Number
+ORDER BY customerorder.CustOrd_Date DESC
+LIMIT 1;
+
+
+
+
+SELECT S.Str_Name, S.StoreManagerID, CONCAT(E.Emp_Fname, ' ', E.Emp_Lname) AS Emp_FullName
+from store AS S, employee AS E
+WHERE S.StoreManagerID = E.Emp_ID
+order by Str_Name Asc;
+
+
+
+
+SELECT Cust_Number AS 'Customer Number', CONCAT(Cust_FName, ' ', Cust_LName) AS 'Full Name'
+FROM CUSTOMER
+WHERE Cust_Number NOT IN (
+    SELECT DISTINCT Cust_Number 
+    FROM CUSTOMERORDER)
+
+
+
+SELECT store.Str_Name, CONCAT(employee.Emp_FName,' ',employee.Emp_LName) AS SupervisorName
+FROM employee
+JOIN storedepartment ON employee.StrDept_ID = storedepartment.StrDept_ID
+JOIN store ON storedepartment.Str_Num = store.Str_Num
+JOIN department ON storedepartment.Dept_ID = department.Dept_ID
+WHERE department.Dept_Name = 'Sports'
+AND employee.SupvisorID IS NULL;
+
+
+
+SELECT p.Prod_Num, p.Prod_Desc,
+    SUM(i.Inv_QtyOnHand) - SUM(i.Inv_QtyOrdered) AS AvailableQuantity
+FROM PRODUCT AS p
+JOIN INVENTORY AS i ON p.Prod_Num = i.ProductNum
+GROUP BY p.Prod_Num, p.Prod_Desc;
+
+
+
+
+SELECT P.Prod_Num AS 'Product Number', P.Prod_Desc AS 'Description', SUM(OL.OrdLn_Qnty) AS 'Total Quantity Sold'
+FROM PRODUCT AS P
+JOIN ORDERLINE AS OL ON P.Prod_Num = OL.Prod_Num
+WHERE OL.OrdLn_DatePicked <= '2026-05-20'
+GROUP BY P.Prod_Num, P.Prod_Desc
+ORDER BY P.Prod_Num, SUM(OL.OrdLn_Qnty)
+
+
+
+
+SELECT Prod_Num, Prod_Desc, CONCAT('$',CAST(Prod_Price AS DECIMAL (7,2))) AS Prod_Price
+FROM product
+WHERE Prod_Price <= (SELECT AVG(Prod_Price) FROM product);
+
+
+
+SELECT CONCAT(E.Emp_Fname, ' ', E.Emp_Lname) AS Full_Name,
+    CONCAT(
+        '$ ',
+        CAST(E.Emp_HourlySalary * 1.075 AS DECIMAL(10,2))
+    ) AS New_Salary
+FROM employee AS E
+ORDER BY Full_Name;
+
+
+
+
+SELECT CONCAT(E.Emp_FName, ' ', E.Emp_LName) AS 'Full Name',
+CONCAT('$', P.Pay_num_of_hours) AS 'Hours Paid',
+CONCAT('$', P.Pay_amount_gross) AS 'Amount Paid'
+FROM PAYSLIP P
+JOIN EMPLOYEE AS E ON P.Emp_ID = E.Emp_ID
+WHERE P.Pay_date = (SELECT MAX(Pay_date) FROM PAYSLIP);
+
