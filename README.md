@@ -1,4 +1,4 @@
-# Data Management
+# Retail Database SQL
 
 Two team projects from my Bachelor of Business Analytics covering the full relational database lifecycle for a fictional retail chain, Big M: first designing the data model, then implementing it in MySQL and querying it. Each project has a PDF write-up showing the design, code and results.
 
