@@ -17,7 +17,9 @@ Big M is a retail chain with stores across Australia. Each store has several dep
 
 ## 1. Database Design: ERD and Normalisation
 
-**What I did:** Turned the written business rules into a logical data model, then checked every entity against the normal forms.
+**My contribution:** I led this project. I built the ERD and wrote the business assumptions, and reviewed the normalisation analysis completed by a teammate.
+
+**What we did:** Turned the written business rules into a logical data model, then checked every entity against the normal forms.
 
 **Approach**
 1. Identified the entities: store, department, employee, product, customer and order.
@@ -38,7 +40,9 @@ Big M is a retail chain with stores across Australia. Each store has several dep
 
 ## 2. Database Implementation: MySQL
 
-**What I did:** Built the database in MySQL (managed with phpMyAdmin), loaded the supplied data, wrote ten analytical queries, and ran four data manipulation statements.
+**My contribution:** We planned the build and loaded the data together as a team. I wrote queries 1, 4, 7 and 10 (staff listed by hourly salary, customers with no orders, total quantity sold up to a given date, and the latest payslips), and reviewed the data manipulation statements.
+
+**What we did:** Built the database in MySQL (managed with phpMyAdmin), loaded the supplied data, wrote ten analytical queries, and ran four data manipulation statements.
 
 **Database build**
 - Created 10 tables with primary keys, foreign keys, composite keys and self-referencing keys.
