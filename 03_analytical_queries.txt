@@ -26,7 +26,7 @@ SELECT Cust_Number AS 'Customer Number', CONCAT(Cust_FName, ' ', Cust_LName) AS 
 FROM CUSTOMER
 WHERE Cust_Number NOT IN (
     SELECT DISTINCT Cust_Number 
-    FROM CUSTOMERORDER)
+    FROM CUSTOMERORDER);
 
 
 
@@ -54,7 +54,7 @@ FROM PRODUCT AS P
 JOIN ORDERLINE AS OL ON P.Prod_Num = OL.Prod_Num
 WHERE OL.OrdLn_DatePicked <= '2026-05-20'
 GROUP BY P.Prod_Num, P.Prod_Desc
-ORDER BY P.Prod_Num, SUM(OL.OrdLn_Qnty)
+ORDER BY P.Prod_Num, SUM(OL.OrdLn_Qnty);
 
 
 
